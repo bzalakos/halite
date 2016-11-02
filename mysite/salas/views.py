@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.views import generic
 from .models import Product, Coupon, Tag, Purchase, User
 
+# Too many anccestors  pylint: disable-msg=R0901
 class ProductsListView(generic.ListView):
     """The view of the Products List."""
     context_object_name = 'products_list'
