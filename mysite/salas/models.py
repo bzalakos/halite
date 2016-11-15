@@ -1,25 +1,18 @@
 """Defines the models used in the application. Object types, relations."""
 # import datetime
 from django.db import models
+from django.contrib.auth.models import User
 # from django.utils import timezone
 
-class User(models.Model):
-    """A User of the site. Either a Customer or a Distributor."""
-    CUSTOMER = 'C'
-    DISTRIBUTOR = 'D'
-    user_types = ((CUSTOMER, 'Customer'), (DISTRIBUTOR, 'Distributor'))
-
-    username = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
+class Profile(models.Model):
+    """Holds more information that isn't included in the default User model."""
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     email_public = models.BooleanField()
-    given_name = models.CharField(max_length=50)
     given_name_visible = models.BooleanField()
-    family_name = models.CharField(max_length=50)
     family_name_visible = models.BooleanField()
     phone_number = models.CharField(max_length=50)
     phone_number_public = models.BooleanField()
     language = models.CharField(max_length=50)
-    user_type = models.CharField(choices=user_types, max_length=50)
     # Distributor stuff.
     payment_instructions = models.CharField(max_length=50, blank=True)
     new_period = models.DurationField(blank=True)
