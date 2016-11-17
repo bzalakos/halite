@@ -33,7 +33,7 @@ class Product(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=4000)
     price = models.FloatField()
-    picture = models.ImageField()
+    picture = models.ImageField(blank=True)
     # Turns out he didn't want all these.
     # begin_date = models.DateTimeField(null=True)
     # end_date = models.DateTimeField(null=True)
