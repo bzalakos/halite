@@ -13,5 +13,5 @@ urlpatterns = [
     url(r'^purchases/(?P<pk>\d+)/$', views.PurchaseView.as_view(), name='purchase'),
     url(r'^account/$', views.AccountView.as_view(), name='account'),
     url(r'^users/$', views.UsersListView.as_view(), name='users'),
-    url(r'^login/$', views.LoginView.as_view(), name='login'),
+    url(r'^login/', views.LoginView.as_view(), name='login'),
 ]

@@ -10,7 +10,7 @@ class LoginView(generic.View):
     """The view of the Login page."""
     template_name = 'salas/login.html'
 
-class ProductsListView(generic.ListView, LoginRequiredMixin):
+class ProductsListView(LoginRequiredMixin, generic.ListView):
     """The view of the Products List."""
     context_object_name = 'products_list'
     template_name = 'salas/products.html'
@@ -19,12 +19,12 @@ class ProductsListView(generic.ListView, LoginRequiredMixin):
         return Product.objects.filter(distributor=self.request.user.profile.distributor,
                                       available=True)
 
-class ProductView(generic.DetailView, LoginRequiredMixin):
+class ProductView(generic.DetailView):
     """The view of a Product's details."""
     model = Product
     template_name = 'salas/product.html'
 
-class CouponsListView(generic.ListView, LoginRequiredMixin):
+class CouponsListView(LoginRequiredMixin, generic.ListView):
     """The view of the Coupons List."""
     context_object_name = 'coupons_list'
     template_name = 'salas/coupons.html'
@@ -32,7 +32,7 @@ class CouponsListView(generic.ListView, LoginRequiredMixin):
         """Gets the list of things to be displayed."""
         return Coupon.objects.filter(distributor=self.request.user, deleted=False)
 
-class TagsListView(generic.ListView, LoginRequiredMixin):
+class TagsListView(LoginRequiredMixin, generic.ListView):
     """The view of the Tags List."""
     context_object_name = 'tags_list'
     template_name = 'salas/tags.html'
@@ -40,7 +40,7 @@ class TagsListView(generic.ListView, LoginRequiredMixin):
         """Gets the list of things to be displayed."""
         return Tag.objects.filter(distributor=self.request.user, deleted=False)
 
-class PurchasesListView(generic.ListView, LoginRequiredMixin):
+class PurchasesListView(LoginRequiredMixin, generic.ListView):
     """The view of the Purchases List."""
     context_object_name = 'purchases_list'
     template_name = 'salas/purchases.html'
@@ -48,17 +48,17 @@ class PurchasesListView(generic.ListView, LoginRequiredMixin):
         """Gets the list of things to be displayed."""
         return Purchase.objects.filter(distributor=self.request.user)
 
-class PurchaseView(generic.DetailView, LoginRequiredMixin):
+class PurchaseView(LoginRequiredMixin, generic.DetailView):
     """The view of a Purchase's details."""
     model = Purchase
     template_name = 'salas/purchase.html'
 
-class AccountView(generic.DetailView, LoginRequiredMixin):
+class AccountView(LoginRequiredMixin, generic.DetailView):
     """The view of the user's Account page."""
     model = User
     template_name = 'salas/account.html'
 
-class UsersListView(generic.ListView, LoginRequiredMixin):
+class UsersListView(LoginRequiredMixin, generic.ListView):
     """The view of the Users List."""
     context_object_name = 'users_list'
     template_name = 'salas/users.html'
